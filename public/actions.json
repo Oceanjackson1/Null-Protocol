@@ -1,0 +1,8 @@
+{
+  "rules": [
+    {
+      "pathPattern": "/stealth/*",
+      "apiPath": "/api/actions/stealth-buy/*"
+    }
+  ]
+}

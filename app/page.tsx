@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Header } from "@/components/one/header";
 import { TradeHub } from "@/components/one/trade-hub";
+import { LiveTelemetry } from "@/components/one/live-telemetry";
 import { Plus } from "lucide-react";
 
 export default async function Home(props: {
@@ -186,6 +187,8 @@ export default async function Home(props: {
         </div>
 
       </main>
+      {/* Live Telemetry Cyber-Overlay */}
+      <LiveTelemetry />
     </div>
   );
 }
