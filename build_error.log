@@ -1,0 +1,31 @@
+yarn run v1.22.22
+$ next build
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.6s
+  Skipping validation of types
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/13) ...
+  Generating static pages using 9 workers (3/13) 
+(node:99566) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 9 workers (6/13) 
+  Generating static pages using 9 workers (9/13) 
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+⨯ useSearchParams() should be wrapped in a suspense boundary at page "/". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at Q (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/.next/server/chunks/ssr/node_modules_next_da606b11._.js:2:2111)
+    at o (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/.next/server/chunks/ssr/node_modules_next_da606b11._.js:4:5314)
+    at gY (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/.next/server/chunks/ssr/_d870ec6a._.js:1:252146)
+    at an (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:84360)
+    at ai (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:86179)
+    at ai (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:104708)
+    at al (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:107953)
+    at as (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:105368)
+    at am (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:112882)
+    at ai (/Users/ocean/Documents/MagicBlock 黑客松/private-mpp-project/node_modules/next/dist/compiled/next-server/app-page-turbo.runtime.prod.js:2:98808)
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /page: /, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
