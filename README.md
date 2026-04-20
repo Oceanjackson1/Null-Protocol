@@ -27,13 +27,13 @@ Unlike standard SPL transfers, NULL transactions are formulated as **Private Int
 ### 2.2 System Flow Diagram
 ```mermaid
 graph TD;
-    A[Autonomous AI Agent] -->|JSON Payload| B[NULL Headless REST API];
-    B -->|ZK/OFAC Check Validation| C{Compliance Oracle};
-    C -- Pass --> D[Private Intent Builder];
-    D --> E[MagicBlock Ephemeral Rollup Node];
-    E --> F[Hardware Enclave Execution (Intel TDX)];
-    F -->|Base Layer Settlement| G[Solana Mainnet L1];
-    G --> H[Resource Provider];
+    A["Autonomous AI Agent"] -->|"JSON Payload"| B["NULL Headless REST API"];
+    B -->|"ZK/OFAC Check Validation"| C{"Compliance Oracle"};
+    C -- Pass --> D["Private Intent Builder"];
+    D --> E["MagicBlock Ephemeral Rollup Node"];
+    E --> F["Hardware Enclave Execution (Intel TDX)"];
+    F -->|"Base Layer Settlement"| G["Solana Mainnet L1"];
+    G --> H["Resource Provider"];
 ```
 
 ### 2.3 The Headless Agent API
