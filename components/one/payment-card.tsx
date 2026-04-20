@@ -1,5 +1,7 @@
 "use client";
 
+import { toast } from "sonner";
+
 import { useState, useCallback, useEffect, useMemo } from "react";
 import {
   Loader2,
@@ -633,6 +635,7 @@ export function PaymentCard() {
     if (publicKey) {
       navigator.clipboard.writeText(publicKey.toBase58());
       setCopied(true);
+      toast.success("[SYS_NOTICE] ADDRESS COPIED TO CLIPBOARD.");
       setTimeout(() => setCopied(false), 2000);
     }
   }, [publicKey]);
@@ -799,6 +802,7 @@ export function PaymentCard() {
       );
       setTxSignature(signature);
       setStatus("confirmed");
+      toast.success("[SYS_NOTICE] TX COMPLETED. TRACE DESTROYED.");
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Payment failed";
       if (message.includes("User rejected")) {
@@ -840,7 +844,7 @@ export function PaymentCard() {
         <div className="rounded-2xl bg-[var(--surface-container)] border border-border/40 shadow-xl shadow-black/30 overflow-hidden">
           {/* Send Section */}
           <div className="mx-3 mt-3 mb-1">
-            <div className="rounded-xl bg-[var(--surface-inner)] border border-border/50 p-4">
+            <div className="rounded-xl bg-[var(--surface-inner)] border border-border/50 p-4 focus-within:border-[#d1fb00] focus-within:shadow-[0_0_15px_rgba(209,251,0,0.1)] transition-all">
               <div className="text-xs text-muted-foreground mb-3">You send</div>
               <div className="flex items-center justify-between">
                 <div>
@@ -900,7 +904,7 @@ export function PaymentCard() {
 
           {/* Receiver Section */}
           <div className="mx-3 mt-2">
-            <div className="rounded-xl bg-[var(--surface-inner)] border border-border/50 p-4">
+            <div className="rounded-xl bg-[var(--surface-inner)] border border-border/50 p-4 focus-within:border-[#d1fb00] focus-within:shadow-[0_0_15px_rgba(209,251,0,0.1)] transition-all">
               <div className="text-xs text-muted-foreground mb-3">Recipient</div>
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
@@ -1072,7 +1076,7 @@ export function PaymentCard() {
                       const nextValue = parseInt(e.target.value, 10);
                       handleSplitChange(Number.isNaN(nextValue) ? 1 : nextValue);
                     }}
-                    className="h-6 w-10 shrink-0 rounded-lg border border-border/50 bg-background px-1.5 text-center text-[11px] text-foreground outline-none [appearance:textfield] [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    className="h-6 w-10 shrink-0 rounded-lg border border-border/50 bg-background px-1.5 text-center text-[11px] text-foreground outline-none [appearance:textfield] [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none focus:border-[#d1fb00] focus:ring-1 focus:ring-[#d1fb00] transition-all"
                   />
                 </div>
               </div>

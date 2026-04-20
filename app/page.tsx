@@ -3,7 +3,11 @@ import { Header } from "@/components/one/header";
 import { TradeHub } from "@/components/one/trade-hub";
 import { Plus } from "lucide-react";
 
-export default async function Home() {
+export default async function Home(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const searchParams = await props.searchParams;
+  const currentMemo = typeof searchParams.memo === 'string' ? searchParams.memo : '';
   const products = [
     {
       name: "Quantum Trading Model V4",
@@ -110,28 +114,37 @@ export default async function Home() {
 
           {/* Product Terminal List */}
           <div className="w-full max-w-2xl mt-auto space-y-4">
-            {products.map((product, i) => (
-              <div 
-                key={i} 
-                className="group relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 border border-white/10 bg-black/40 hover:border-[#d1fb00]/50 transition-colors backdrop-blur-md"
-              >
-                <div>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-widest">{product.name}</h3>
-                  <p className="text-[10px] text-white/40 mt-1 uppercase max-w-sm">{product.desc}</p>
+            {products.map((product, i) => {
+              const isActive = currentMemo === `Buy ${product.name}`;
+              return (
+                <div 
+                  key={i} 
+                  className={`group relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 border transition-colors backdrop-blur-md ${
+                    isActive 
+                      ? 'border-[#d1fb00] bg-[#d1fb00]/5 shadow-[0_0_20px_rgba(209,251,0,0.15)]' 
+                      : 'border-white/10 bg-black/40 hover:border-[#d1fb00]/50'
+                  }`}
+                >
+                  <div>
+                    <h3 className={`text-sm font-bold uppercase tracking-widest ${isActive ? 'text-[#d1fb00]' : 'text-white'}`}>{product.name}</h3>
+                    <p className={`text-[10px] mt-1 uppercase max-w-sm ${isActive ? 'text-[#d1fb00]/70' : 'text-white/40'}`}>{product.desc}</p>
+                  </div>
+                  <div className="flex items-center gap-6 w-full sm:w-auto">
+                    <span className="text-sm text-[#d1fb00] font-bold">
+                      {product.price}
+                    </span>
+                    <a 
+                      href={`/?tab=payment&rcv=EHN1bbAL4o5m15TqS4h1HPRwR2oY9p6rDMBP9vtoU93F&memo=Buy ${encodeURIComponent(product.name)}`}
+                      className={`ml-auto sm:ml-0 text-xs px-4 py-2 uppercase font-bold transition-all ${
+                        isActive ? 'bg-[#d1fb00] text-black hover:bg-white' : 'bg-white/10 text-white hover:bg-[#d1fb00] hover:text-black'
+                      }`}
+                    >
+                      {isActive ? 'SELECTED' : 'INITIATE'}
+                    </a>
+                  </div>
                 </div>
-                <div className="flex items-center gap-6 w-full sm:w-auto">
-                  <span className="text-sm text-[#d1fb00] font-bold">
-                    {product.price}
-                  </span>
-                  <a 
-                    href={`/?tab=payment&rcv=EHN1bbAL4o5m15TqS4h1HPRwR2oY9p6rDMBP9vtoU93F&memo=Buy ${encodeURIComponent(product.name)}`}
-                    className="ml-auto sm:ml-0 text-xs text-black bg-[#d1fb00] hover:bg-white px-4 py-2 uppercase font-bold transition-all"
-                  >
-                    INITIATE
-                  </a>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
@@ -149,7 +162,20 @@ export default async function Home() {
             </div>
 
             <div className="p-4">
-              <Suspense fallback={<div className="h-[400px] w-full animate-pulse bg-black/20" />}>
+              <Suspense fallback={
+                <div className="h-[400px] w-full flex flex-col justify-center items-center bg-[#050505] border border-white/5 font-mono">
+                  <div className="text-[#d1fb00] animate-pulse mb-3 opacity-80 flex flex-col items-center">
+                    <svg width="40" height="40" viewBox="0 0 100 100" className="mb-4">
+                      <path d="M 30,50 C 30,20 70,20 70,50 C 70,80 30,80 30,50 Z" stroke="#d1fb00" strokeWidth="12" fill="none" opacity="0.5"/>
+                      <path d="M 20,40 C 40,20 60,80 80,60" stroke="#d1fb00" strokeWidth="12" fill="none" strokeLinecap="round"/>
+                    </svg>
+                    <span className="tracking-widest text-xs uppercase">&gt; Establishing Secure TEE Tunnel_</span>
+                  </div>
+                  <div className="w-1/2 h-0.5 bg-white/10 mt-2 overflow-hidden relative">
+                    <div className="absolute inset-0 bg-[#d1fb00] animate-[shimmer_1.5s_infinite]" style={{ clipPath: 'polygon(0 0, 30% 0, 50% 100%, 0 100%)' }} />
+                  </div>
+                </div>
+              }>
                 <TradeHub />
               </Suspense>
             </div>

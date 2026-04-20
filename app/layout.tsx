@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { Providers } from '@/app/providers'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -49,6 +50,13 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        <Toaster 
+          theme="dark" 
+          position="bottom-right" 
+          toastOptions={{
+            style: { background: '#050505', color: '#fff', border: '1px solid rgba(209,251,0,0.2)', borderRadius: '0', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '0.05em' },
+          }}
+        />
         <Analytics />
       </body>
     </html>
